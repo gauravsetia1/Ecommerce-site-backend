@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.security.Principal;
 import java.util.List;
 
 @RestController
@@ -16,9 +17,23 @@ public class UsersController {
     @Autowired
     UsersRegister usersRegister;
 
+/*
+    public static Principal principal;
+*/
+
+    @GetMapping(path = "/checkuser", produces = "application/json")
+    public String checkLogin(Principal principal) {
+        System.out.println("Logging in User.." + principal.getName());
+        /*this.principal = principal;*/
+        return "\"Login Successful\"";
+    }
+
     @PostMapping("/addUsers")
     public Users addUsers(@Valid @RequestBody Users users) {
-        return usersRegister.save(users);
+        users.setActive(1);
+        users.setAuthorize("basic");
+        usersRegister.save(users);
+        return users;
     }
 
     @GetMapping("/getUsers")

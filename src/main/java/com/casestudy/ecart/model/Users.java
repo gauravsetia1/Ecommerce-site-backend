@@ -19,6 +19,11 @@ public class Users implements Serializable {
     private String password;
     private int active;
     private String authorize;
+    private String name;
+    private String phone;
+    private String gender;
+
+    public Users() { }
 
     //getters and setters
     public int getId() {
@@ -51,6 +56,24 @@ public class Users implements Serializable {
     public void setAuthorize(String authorize) {
         this.authorize = authorize;
     }
+    public String getName() {
+        return name;
+    }
+    public void setName(String name) {
+        this.name = name;
+    }
+    public String getPhone() {
+        return phone;
+    }
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+    public String getGender() {
+        return gender;
+    }
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
 
     @Override
     public String toString() {
@@ -60,6 +83,9 @@ public class Users implements Serializable {
                 ", password='" + password + '\'' +
                 ", active=" + active +
                 ", authorize='" + authorize + '\'' +
+                ", name='" + name + '\'' +
+                ", phone='" + phone + '\'' +
+                ", gender='" + gender + '\'' +
                 '}';
     }
 }
