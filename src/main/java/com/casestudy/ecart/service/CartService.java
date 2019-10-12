@@ -78,9 +78,13 @@ public class CartService {
         for (int i=0;i<carts.size();i++) {
             Cart cartObj = carts.get(i);
             if(cartObj.getItems()==items.get()) {
-                cartObj.setQuantity(cartObj.getQuantity()+value);
-                cartRegister.save(cartObj);
-                return "\"Successful\"";
+                int x = cartObj.getQuantity()+value;
+                if(x>=1)
+                {
+                    cartObj.setQuantity(x);
+                    cartRegister.save(cartObj);
+                    return "\"Successful\"";
+                }
             }
         }
         return "\"Unsuccessful\"";
@@ -92,9 +96,18 @@ public class CartService {
         for (int i=0;i<carts.size();i++) {
             Cart cartObj = carts.get(i);
             if(cartObj.getItems()==items.get()) {
-                cartObj.setQuantity(cartObj.getQuantity()-value);
-                cartRegister.save(cartObj);
-                return "\"Successful\"";
+                int x = cartObj.getQuantity()-value;
+                if(x==1)
+                {
+                    cartObj.setQuantity(1);
+                    cartRegister.save(cartObj);
+                    return "\"Successful\"";
+                } else if(x>1)
+                {
+                    cartObj.setQuantity(x);
+                    cartRegister.save(cartObj);
+                    return "\"Successful\"";
+                }
             }
         }
         return "\"Unsuccessful\"";
