@@ -2,6 +2,7 @@ package com.casestudy.ecart.controller;
 
 import com.casestudy.ecart.model.Users;
 import com.casestudy.ecart.repository.UsersRegister;
+import com.casestudy.ecart.service.CurrentUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,6 +18,9 @@ public class UsersController {
 
     @Autowired
     UsersRegister usersRegister;
+
+    @Autowired
+    CurrentUserService currentUserService;
 
 /*
     public static Principal principal;
@@ -46,6 +50,19 @@ public class UsersController {
     public String valUser()
     {
         return "\"user successfully authenticated\"";
+    }
+
+    @GetMapping("/logUser")
+    public Users logUser(Principal principal) {
+        return currentUserService.getUser(principal);
+    }
+
+    @PutMapping("/update")
+    public Users update(@Valid @RequestBody Users users) {
+        users.setActive(1);
+        users.setAuthorize("basic");
+        usersRegister.save(users);
+        return users;
     }
 
 }

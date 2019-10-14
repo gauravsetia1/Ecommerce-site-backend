@@ -129,4 +129,20 @@ public class CartService {
         }
         return orderRegister.findAllByUserId((long) users.get().getId());
     }
+
+    public List<OrderHistory> order(Principal principal) {
+        Optional<Users> users = usersRepositoryClass.getByEmail(principal.getName());
+        ArrayList<Cart> cartList = cartRegister.findAllByUsers(users);
+        for (Cart cart: cartList)
+        {
+            OrderHistory orderHistory = new OrderHistory();
+            orderHistory.setUserId((long) cart.getUsers().getId());
+            orderHistory.setQuantity(cart.getQuantity());
+            orderHistory.setPrice(cart.getItems().getUnitPrice());
+            orderHistory.setItemName(cart.getItems().getName());
+            orderHistory.setDate(new Date());
+            orderRegister.saveAndFlush(orderHistory);
+        }
+        return orderRegister.findAllByUserId((long) users.get().getId());
+    }
 }

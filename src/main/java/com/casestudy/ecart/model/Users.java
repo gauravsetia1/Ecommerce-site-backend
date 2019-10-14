@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.io.Serializable;
+import java.util.Date;
 
 @Component
 @Entity
@@ -22,6 +23,8 @@ public class Users implements Serializable {
     private String name;
     private String phone;
     private String gender;
+    private String address;
+    private Date dob;
 
     public Users() { }
 
@@ -74,6 +77,18 @@ public class Users implements Serializable {
     public void setGender(String gender) {
         this.gender = gender;
     }
+    public String getAddress() {
+        return address;
+    }
+    public void setAddress(String address) {
+        this.address = address;
+    }
+    public Date getDob() {
+        return dob;
+    }
+    public void setDob(Date dob) {
+        this.dob = dob;
+    }
 
     @Override
     public String toString() {
@@ -86,6 +101,8 @@ public class Users implements Serializable {
                 ", name='" + name + '\'' +
                 ", phone='" + phone + '\'' +
                 ", gender='" + gender + '\'' +
+                ", address='" + address + '\'' +
+                ", dob=" + dob +
                 '}';
     }
 }

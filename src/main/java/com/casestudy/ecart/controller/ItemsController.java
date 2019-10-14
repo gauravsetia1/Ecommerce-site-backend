@@ -55,4 +55,11 @@ public class ItemsController {
     {
         return itemsRegister.findAllByUnitPriceBetween(price1, price2);
     }
+
+
+    @GetMapping("search/{name}")
+    public List<Items> getSearch(@PathVariable(value = "name")String name)
+    {
+        return itemsRegister.findByName(name);
+    }
 }
