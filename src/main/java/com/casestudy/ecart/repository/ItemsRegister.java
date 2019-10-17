@@ -15,6 +15,6 @@ public interface ItemsRegister extends JpaRepository<Items, Integer> {
 
     public List<Items> findAllByUnitPriceBetween(Double p1, Double p2);
 
-    public List<Items> findByName(String name);
+    public List<Items> findByNameContaining(String name);
 
 }

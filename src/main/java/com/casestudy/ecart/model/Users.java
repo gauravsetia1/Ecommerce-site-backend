@@ -24,7 +24,6 @@ public class Users implements Serializable {
     private String phone;
     private String gender;
     private String address;
-    private Date dob;
 
     public Users() { }
 
@@ -83,12 +82,6 @@ public class Users implements Serializable {
     public void setAddress(String address) {
         this.address = address;
     }
-    public Date getDob() {
-        return dob;
-    }
-    public void setDob(Date dob) {
-        this.dob = dob;
-    }
 
     @Override
     public String toString() {
@@ -102,7 +95,6 @@ public class Users implements Serializable {
                 ", phone='" + phone + '\'' +
                 ", gender='" + gender + '\'' +
                 ", address='" + address + '\'' +
-                ", dob=" + dob +
                 '}';
     }
 }

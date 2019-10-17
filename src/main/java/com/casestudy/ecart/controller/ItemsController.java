@@ -3,6 +3,7 @@ package com.casestudy.ecart.controller;
 import com.casestudy.ecart.expection.ResourceNotFoundException;
 import com.casestudy.ecart.model.Items;
 import com.casestudy.ecart.repository.ItemsRegister;
+import com.casestudy.ecart.service.CurrentUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -56,10 +57,10 @@ public class ItemsController {
         return itemsRegister.findAllByUnitPriceBetween(price1, price2);
     }
 
-
     @GetMapping("search/{name}")
     public List<Items> getSearch(@PathVariable(value = "name")String name)
     {
-        return itemsRegister.findByName(name);
+        return itemsRegister.findByNameContaining(name);
     }
+
 }

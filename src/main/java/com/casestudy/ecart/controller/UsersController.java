@@ -60,7 +60,7 @@ public class UsersController {
     @PutMapping("/update")
     public Users update(@Valid @RequestBody Users users) {
         users.setActive(1);
-        users.setAuthorize("basic");
+        users.setAuthorize(users.getAuthorize());
         usersRegister.save(users);
         return users;
     }
